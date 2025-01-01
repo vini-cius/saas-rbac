@@ -1,6 +1,7 @@
 import { ChevronDownIcon, LogOutIcon } from 'lucide-react'
 
 import { auth } from '@/auth/auth'
+import { getInitials } from '@/lib/utils'
 
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import {
@@ -9,15 +10,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
-
-function getInitials(name: string): string {
-  const initials = name
-    .split(' ')
-    .map((word) => word.charAt(0).toUpperCase())
-    .slice(0, 2)
-    .join('')
-  return initials
-}
 
 export async function ProfileButton() {
   const { user } = await auth()
@@ -30,7 +22,7 @@ export async function ProfileButton() {
           <span className="text-xs text-muted-foreground">{user.email}</span>
         </div>
 
-        <Avatar>
+        <Avatar className="size-8">
           {user.avatarUrl && <AvatarImage src={user.avatarUrl} />}
 
           <AvatarFallback>{getInitials(user.name ?? '')}</AvatarFallback>
