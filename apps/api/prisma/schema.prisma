@@ -8,19 +8,19 @@ datasource db {
 }
 
 model User {
-  id                String         @id @default(uuid())
-  name              String?
-  email             String         @unique
-  passwordHash      String?        @map("password_hash")
-  avatarUrl         String?        @map("avatar_url")
-  createdAt         DateTime       @default(now()) @map("created_at")
-  updatedAt         DateTime       @default(now()) @updatedAt @map("updated_at")
-  tokens            Token[]
-  accounts          Account[]
-  invites           Invite[]
-  member_on         Member[]
-  owns_rganizations Organization[]
-  owns_projects     Project[]
+  id                 String         @id @default(uuid())
+  name               String?
+  email              String         @unique
+  passwordHash       String?        @map("password_hash")
+  avatarUrl          String?        @map("avatar_url")
+  createdAt          DateTime       @default(now()) @map("created_at")
+  updatedAt          DateTime       @default(now()) @updatedAt @map("updated_at")
+  tokens             Token[]
+  accounts           Account[]
+  invites            Invite[]
+  member_on          Member[]
+  owns_organizations Organization[]
+  owns_projects      Project[]
 
   @@map("users")
 }
@@ -42,6 +42,7 @@ model Token {
 
 enum AccountProvider {
   GITHUB
+  GOOGLE
 }
 
 model Account {

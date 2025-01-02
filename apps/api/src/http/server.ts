@@ -15,8 +15,10 @@ import {
 import { errorHandler } from '@/http/error-handler'
 
 import { authenticateWithGithub } from './routes/auth/authenticate-with-github'
+import { authenticateWithGoogle } from './routes/auth/authenticate-with-google'
 import { authenticateWithPassword } from './routes/auth/authenticate-with-password'
 import { createAccount } from './routes/auth/create-account'
+import { getGoogleAuthorizationUrl } from './routes/auth/get-google-authorization-url'
 import { getProfile } from './routes/auth/get-profile'
 import { requestPasswordRecover } from './routes/auth/request-password-recover'
 import { resetPassword } from './routes/auth/reset-password'
@@ -91,6 +93,8 @@ app.register(fastifyCors)
 app.register(createAccount)
 app.register(authenticateWithPassword)
 app.register(authenticateWithGithub)
+app.register(getGoogleAuthorizationUrl)
+app.register(authenticateWithGoogle)
 app.register(getProfile)
 app.register(requestPasswordRecover)
 app.register(resetPassword)

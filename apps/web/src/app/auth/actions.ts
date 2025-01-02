@@ -3,6 +3,8 @@
 import { env } from '@saas/env'
 import { redirect } from 'next/navigation'
 
+import { getGoogleAuthorizationUrl } from '@/http/get-google-authorization-url'
+
 export async function signInWithGithub() {
   const githubSignInUrl = new URL('login/oauth/authorize', 'https://github.com')
 
@@ -14,4 +16,10 @@ export async function signInWithGithub() {
   githubSignInUrl.searchParams.set('scope', 'user')
 
   redirect(githubSignInUrl.toString())
+}
+
+export async function signInWithGoogle() {
+  const { authorizationUrl } = await getGoogleAuthorizationUrl()
+
+  redirect(authorizationUrl)
 }
