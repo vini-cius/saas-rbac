@@ -54,7 +54,7 @@ export async function getOrganizationBilling(app: FastifyInstance) {
           throw new UnauthorizedError(`You don't have access to this resource`)
         }
 
-        const [amoutOfMembers, amountOfProjects] = await Promise.all([
+        const [amountOfMembers, amountOfProjects] = await Promise.all([
           prisma.member.count({
             where: {
               organizationId: organization.id,
@@ -73,16 +73,16 @@ export async function getOrganizationBilling(app: FastifyInstance) {
         return {
           billing: {
             seats: {
-              amount: amoutOfMembers,
+              amount: amountOfMembers,
               unit: 10,
-              price: amoutOfMembers * 10,
+              price: amountOfMembers * 10,
             },
             projects: {
               amount: amountOfProjects,
               unit: 20,
               price: amountOfProjects * 20,
             },
-            total: amoutOfMembers * 10 + amountOfProjects * 20,
+            total: amountOfMembers * 10 + amountOfProjects * 20,
           },
         }
       },
