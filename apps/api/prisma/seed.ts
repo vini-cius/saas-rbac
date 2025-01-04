@@ -14,7 +14,8 @@ async function seed() {
     data: {
       name: 'Geralt of Rivia',
       email: 'geraltofrivia@acme.com',
-      avatarUrl: 'https://github.com/vini-cius.png',
+      avatarUrl:
+        'https://d.furaffinity.net/art/jonhankercheif/1648807071/1648807071.jonhankercheif_geralt_the_witcher_thumbs_up_full.jpg',
       passwordHash,
     },
   })
@@ -145,6 +146,63 @@ async function seed() {
         createMany: {
           data: [
             { userId: user.id, role: 'MEMBER' },
+            { userId: user2.id, role: 'ADMIN' },
+            { userId: user3.id, role: 'MEMBER' },
+          ],
+        },
+      },
+    },
+  })
+
+  await prisma.organization.create({
+    data: {
+      name: 'ACME Inc (billing)',
+      slug: 'acme-billing',
+      avatarUrl: faker.image.avatarGitHub(),
+      ownerId: user.id,
+      projects: {
+        createMany: {
+          data: [
+            {
+              name: faker.commerce.productName(),
+              description: faker.commerce.productDescription(),
+              slug: faker.lorem.slug(),
+              avatarUrl: faker.image.avatarGitHub(),
+              ownerId: faker.helpers.arrayElement([
+                user.id,
+                user2.id,
+                user3.id,
+              ]),
+            },
+            {
+              name: faker.commerce.productName(),
+              description: faker.commerce.productDescription(),
+              slug: faker.lorem.slug(),
+              avatarUrl: faker.image.avatarGitHub(),
+              ownerId: faker.helpers.arrayElement([
+                user.id,
+                user2.id,
+                user3.id,
+              ]),
+            },
+            {
+              name: faker.commerce.productName(),
+              description: faker.commerce.productDescription(),
+              slug: faker.lorem.slug(),
+              avatarUrl: faker.image.avatarGitHub(),
+              ownerId: faker.helpers.arrayElement([
+                user.id,
+                user2.id,
+                user3.id,
+              ]),
+            },
+          ],
+        },
+      },
+      members: {
+        createMany: {
+          data: [
+            { userId: user.id, role: 'BILLING' },
             { userId: user2.id, role: 'ADMIN' },
             { userId: user3.id, role: 'MEMBER' },
           ],

@@ -12,8 +12,6 @@ import { useFormState } from '@/hooks/use-form-state'
 import { createOrganizationAction } from './actions'
 
 export function OrganizationForm() {
-  // const router = useRouter()
-
   const [{ success, message, errors }, handleSubmit, isPending] = useFormState(
     createOrganizationAction,
   )
