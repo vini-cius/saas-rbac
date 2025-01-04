@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 import { Providers } from './providers'
 
 export const metadata: Metadata = {
-  title: 'Saas App',
+  title: 'Create Next App',
 }
 
 export default function RootLayout({

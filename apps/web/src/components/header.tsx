@@ -1,5 +1,6 @@
 import { SlashIcon } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import rockstarGamesIcon from '@/assets/rockstar-games-icon.svg'
 import { ability } from '@/auth/auth'
@@ -16,11 +17,13 @@ export async function Header() {
   return (
     <div className="mx-auto flex max-w-[1200px] items-center justify-between border-b pb-2">
       <div className="flex items-center gap-3">
-        <Image
-          src={rockstarGamesIcon}
-          className="size-6 dark:invert"
-          alt="Rockstar Games"
-        />
+        <Link href="/">
+          <Image
+            src={rockstarGamesIcon}
+            className="size-6 dark:invert"
+            alt="Rockstar Games"
+          />
+        </Link>
 
         <SlashIcon className="size-3 -rotate-[24deg] text-border" />
 
