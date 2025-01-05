@@ -3,7 +3,7 @@
 import { AlertTriangleIcon, Loader2Icon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 import githubIcon from '@/assets/github-icon.svg'
 import googleIcon from '@/assets/google-icon.svg'
@@ -19,6 +19,7 @@ import { signInWithEmailAndPassword } from './actions'
 
 export function SignInForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
 
   const [{ success, message, errors }, handleSubmit, isPending] = useFormState(
     signInWithEmailAndPassword,
@@ -41,7 +42,14 @@ export function SignInForm() {
 
         <div className="space-y-1">
           <Label htmlFor="email">Email</Label>
-          <Input type="email" id="email" name="email" autoComplete="email" />
+          <Input
+            type="email"
+            id="email"
+            name="email"
+            autoComplete="email"
+            inputMode="email"
+            defaultValue={searchParams.get('email') ?? ''}
+          />
 
           {errors?.email && (
             <p className="text-xs font-medium text-red-500 dark:text-red-400">

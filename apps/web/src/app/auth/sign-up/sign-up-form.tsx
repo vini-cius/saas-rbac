@@ -82,7 +82,7 @@ export function SignUpForm() {
 
           {errors?.password_confirmation && (
             <p className="text-xs font-medium text-red-500 dark:text-red-400">
-              {errors.email[0]}
+              {errors.password_confirmation[0]}
             </p>
           )}
         </div>
